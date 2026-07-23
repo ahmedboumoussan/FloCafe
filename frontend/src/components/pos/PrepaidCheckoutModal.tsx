@@ -147,7 +147,7 @@ export default function PrepaidCheckoutModal({ currency, onClose, onConfirm }: P
   };
 
   const addSplit = () => {
-    const newPayments = [...payments, { method: 'card' as const, amount: '0' }];
+    const newPayments = [...payments, { method: 'cash', amount: '0' }];
     const walletUsed = parseFloat(walletAmount) || 0;
     const cashRemaining = Math.max(0, remaining - walletUsed);
     const perSplit = cashRemaining / newPayments.length;

@@ -1,15 +1,15 @@
-export type Language = 'en' | 'es';
+export type Language = 'en' | 'fr';
 import en from './i18n/en.json';
-import es from './i18n/es.json';
+import fr from './i18n/fr.json';
 
-const translations: Record<Language, Record<string, string>> = { en, es };
+const translations: Record<Language, Record<string, string>> = { en, fr };
 
 const PLURAL_RE = /\{(\w+),\s*plural,\s*((?:\s*(?:zero|one|two|few|many|other)\s*\{[^}]*\})+)\s*\}/g;
 
 function formatIcuPlural(template: string, params: Record<string, string | number>, lang: Language): string {
   return template.replace(PLURAL_RE, (_match, name: string, cases: string) => {
     const raw = Number(params[name] ?? 0);
-    const locale = lang === 'es' ? 'es-AR' : 'en';
+    const locale = lang === 'fr' ? 'fr' : 'en';
     const pr = new Intl.PluralRules(locale).select(raw);
     const ordered = ['zero', 'one', 'two', 'few', 'many', 'other'];
     const seen: Record<string, string> = {};
@@ -40,9 +40,6 @@ export function t(key: string, lang: Language, params?: Record<string, string | 
 }
 
 export function getBrowserLanguage(): Language {
-  if (typeof navigator !== 'undefined' && navigator.language?.toLowerCase().startsWith('es')) {
-    return 'es';
-  }
   return 'en';
 }
 
@@ -99,7 +96,7 @@ export async function fetchServerInfo(baseUrl = '', timeoutMs = 1500): Promise<S
       kds_default_view?: string | null;
     };
     return {
-      language: data.language === 'es' ? 'es' : data.language === 'en' ? 'en' : null,
+      language: data.language === 'fr' ? 'fr' : data.language === 'en' ? 'en' : null,
       country: data.country || null,
       kdsDefaultView:
         data.kds_default_view === 'kanban' ? 'kanban' : data.kds_default_view === 'tabs' ? 'tabs' : null,

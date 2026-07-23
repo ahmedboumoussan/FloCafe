@@ -1,7 +1,10 @@
-import { Banknote, CreditCard, Smartphone } from 'lucide-react';
+import { Banknote, Building2, Circle } from 'lucide-react';
 
-export const PAYMENT_METHODS: { key: 'cash' | 'card' | 'upi'; labelKey: string; icon: typeof Banknote }[] = [
+export const PAYMENT_METHODS: { key: string; labelKey: string; icon: typeof Banknote }[] = [
   { key: 'cash', labelKey: 'pos.methodCash', icon: Banknote },
-  { key: 'card', labelKey: 'pos.methodCard', icon: CreditCard },
-  { key: 'upi', labelKey: 'pos.methodUpi', icon: Smartphone },
+  { key: 'bankily', labelKey: 'pos.methodBankily', icon: Building2 },
+  { key: 'masrvi', labelKey: 'pos.methodMasrvi', icon: Building2 },
+  { key: 'sedad', labelKey: 'pos.methodSedad', icon: Building2 },
+  { key: 'bimbank', labelKey: 'pos.methodBimbank', icon: Building2 },
+  { key: 'other', labelKey: 'pos.methodOther', icon: Circle },
 ];

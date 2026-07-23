@@ -4,7 +4,7 @@ import type { User, Tenant } from '@/lib/types';
 import { usePosSettingsStore } from '@/store/pos-settings';
 
 function syncTenantLanguage(t: Tenant | null | undefined) {
-  if (t?.language === 'en' || t?.language === 'es') {
+  if (t?.language === 'en' || t?.language === 'fr') {
     usePosSettingsStore.getState().setLanguage(t.language);
   }
 }

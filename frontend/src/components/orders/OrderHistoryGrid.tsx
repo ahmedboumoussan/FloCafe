@@ -42,7 +42,7 @@ const MOCK_HISTORY: HistoryOrder[] = [
       id: 501, bill_number: 'B-0501', order_id: 981, subtotal: 890, tax_amount: 44.5,
       discount_amount: 0, service_charge: 0, delivery_charge: 0, total: 934.5,
       paid_amount: 934.5, balance: 0, payment_status: 'paid',
-      payment_details: [{ method: 'card', amount: 934.5, timestamp: hoursAgo(2) }],
+      payment_details: [{ method: 'bankily', amount: 934.5, timestamp: hoursAgo(2) }],
     },
   },
   {
@@ -79,7 +79,7 @@ const MOCK_HISTORY: HistoryOrder[] = [
       discount_amount: 100, discount_type: 'flat', discount_value: 100, discount_reason: 'Loyalty reward',
       service_charge: 0, delivery_charge: 0, total: 1202,
       paid_amount: 1202, balance: 0, payment_status: 'paid',
-      payment_details: [{ method: 'upi', amount: 1202, timestamp: hoursAgo(9) }],
+      payment_details: [{ method: 'masrvi', amount: 1202, timestamp: hoursAgo(9) }],
     },
   },
   {

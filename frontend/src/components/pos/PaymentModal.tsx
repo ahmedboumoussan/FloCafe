@@ -123,7 +123,7 @@ export default function PaymentModal({ bill, currency, onClose, onPaid, onBillUp
   };
 
   const addSplit = () => {
-    const newPayments = [...payments, { method: 'card' as const, amount: '0' }];
+    const newPayments = [...payments, { method: 'cash', amount: '0' }];
     // Split amount equally among all splits
     const perSplit = remaining / newPayments.length;
     setPayments(newPayments.map(p => ({ ...p, amount: perSplit.toFixed(2) })));

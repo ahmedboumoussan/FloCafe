@@ -1706,40 +1706,23 @@ export default function SettingsPage() {
                   {/* Input fields */}
                   {isAdmin ? (
                     <div className="grid grid-cols-3 gap-2">
-                      <select
-                        value={form.countryCode}
-                        onChange={(e) => {
-                          const country = COUNTRIES.find(c => c.code === e.target.value);
-                          setForm((p) => ({
-                            ...p,
-                            countryCode: e.target.value,
-                            currency: country?.currency || p.currency,
-                            timezone: country?.timezone || p.timezone,
-                          }));
-                        }}
-                        aria-label={t('common.search')}
-                        className="px-3 py-2 text-sm border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-brand bg-white"
-                      >
-                        <option value="">{t('settings.selectCountry')}</option>
-                        {COUNTRIES.map((c) => (
-                          <option key={c.code} value={c.code}>{countryName(c.code)}</option>
-                        ))}
-                      </select>
+                      <input 
+                        type="text" 
+                        value={form.countryCode ? countryName(form.countryCode) : ''}
+                        readOnly
+                        className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 text-gray-700 cursor-not-allowed" 
+                      />
                       <input 
                         type="text" 
                         value={form.timezone} 
-                        onChange={(e) => setForm((p) => ({ ...p, timezone: e.target.value }))}
-                        placeholder={t('settings.timezoneAutoFilled')}
-                        className="px-3 py-2 text-sm border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-brand bg-gray-50" 
                         readOnly
+                        className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 text-gray-700 cursor-not-allowed" 
                       />
                       <input 
                         type="text" 
                         value={form.currency} 
-                        onChange={(e) => setForm((p) => ({ ...p, currency: e.target.value }))}
-                        placeholder={t('settings.currencyAutoFilled')}
-                        className="px-3 py-2 text-sm border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-brand bg-gray-50" 
                         readOnly
+                        className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 text-gray-700 cursor-not-allowed" 
                       />
                     </div>
                   ) : (
@@ -1896,14 +1879,14 @@ export default function SettingsPage() {
                   <select
                     value={language}
                     onChange={(e) => {
-                      const lang = e.target.value as 'en' | 'es';
+                      const lang = e.target.value as 'en' | 'fr';
                       setLanguage(lang);
                       api.put('/settings/business', { language: lang }).catch(() => toast.error(t('settings.saveFailed')));
                     }}
                     className="block w-full rounded-md border-gray-200 shadow-sm focus:border-brand focus:ring-brand sm:text-sm px-3 py-2 border"
                   >
                     <option value="en">{t('settings.languageEn')}</option>
-                    <option value="es">{t('settings.languageEs')}</option>
+                    <option value="fr">{t('settings.languageFr')}</option>
                   </select>
                 </div>
               </div>

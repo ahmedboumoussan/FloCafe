@@ -3,7 +3,7 @@ import { fetchServerInfo } from '@/lib/i18n';
 import type { KdsViewMode } from '@/hooks/useKdsView';
 
 export interface ServerKdsInfo {
-  language: 'en' | 'es' | null;
+  language: 'en' | 'fr' | null;
   country: string | null;
   kdsDefaultView: KdsViewMode | null;
 }

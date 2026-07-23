@@ -43,7 +43,7 @@ export default function SetupPage() {
   const [serviceModel, setServiceModel] = useState<ServiceModel>('qsr');
   const [language, setLanguage] = useState<Language>('en');
   const [browserLanguage, setBrowserLanguage] = useState<Language>('en');
-  const [country, setCountry] = useState<string>('IN');
+  const [country, setCountry] = useState<string>('MR');
   const [countryQuery, setCountryQuery] = useState<string>('');
   const [form, setForm] = useState({
     name: '',
@@ -88,7 +88,7 @@ export default function SetupPage() {
 
   const selectedCountry: Country | undefined = getCountryByCode(country);
   const q = countryQuery.trim().toLowerCase();
-  const languageOptions: Language[] = browserLanguage === 'es' ? ['es', 'en'] : ['en', 'es'];
+  const languageOptions: Language[] = ['en', 'fr'];
   const filteredCountries = COUNTRIES.filter((c) => {
     if (!q) return true;
     return (
@@ -215,7 +215,7 @@ export default function SetupPage() {
                 <div className="grid gap-3 sm:grid-cols-2">
                   {languageOptions.map((option) => {
                     const selected = language === option;
-                    const label = option === 'es' ? t('setup.languageSpanish') : t('setup.languageEnglish');
+                    const label = option === 'fr' ? t('setup.languageFrench') : t('setup.languageEnglish');
                     return (
                       <button
                         key={option}
