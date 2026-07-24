@@ -90,7 +90,7 @@ export const getCountryByCode = (code: string): Country | undefined => {
 };
 
 const CURRENCY_SYMBOL_OVERRIDE: Record<string, string> = {
-  MRU: 'UM',
+  MRU: 'MRU',
 };
 
 export const getCurrencySymbol = (currency: string, locale = 'en-US'): string => {
