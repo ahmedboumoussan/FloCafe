@@ -89,8 +89,13 @@ export const getCountryByCode = (code: string): Country | undefined => {
   return COUNTRIES.find((c) => c.code === code.toUpperCase());
 };
 
+const CURRENCY_SYMBOL_OVERRIDE: Record<string, string> = {
+  MRU: 'UM',
+};
+
 export const getCurrencySymbol = (currency: string, locale = 'en-US'): string => {
   if (!currency) return currency;
+  if (CURRENCY_SYMBOL_OVERRIDE[currency]) return CURRENCY_SYMBOL_OVERRIDE[currency];
   try {
     return new Intl.NumberFormat(locale, { style: 'currency', currency, currencyDisplay: 'narrowSymbol' })
       .formatToParts(0)
@@ -102,6 +107,16 @@ export const getCurrencySymbol = (currency: string, locale = 'en-US'): string =>
 
 export const formatCurrency = (amount: number, currency: string, locale = 'en-US'): string => {
   if (!currency) return amount.toFixed(2);
+  const symbol = CURRENCY_SYMBOL_OVERRIDE[currency];
+  if (symbol) {
+    try {
+      return new Intl.NumberFormat(locale, { style: 'currency', currency, currencyDisplay: 'code' })
+        .format(amount)
+        .replace(currency, symbol);
+    } catch {
+      return `${symbol} ${amount.toFixed(2)}`;
+    }
+  }
   try {
     return new Intl.NumberFormat(locale, { style: 'currency', currency, currencyDisplay: 'narrowSymbol' }).format(amount);
   } catch {
