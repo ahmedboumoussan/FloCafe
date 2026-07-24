@@ -1217,6 +1217,12 @@ export default function SettingsPage() {
       if (d.business_phone) posSettings.setBillPhone(d.business_phone);
       posSettings.setBillingType(d.billing_type === 'prepaid' ? 'prepaid' : 'postpaid');
       posSettings.setTablesRequired(typeof d.tables_required === 'boolean' ? d.tables_required : true);
+
+      // Force Mauritania if country/currency/timezone don't match
+      if (d.country !== 'MR' || d.currency !== 'MRU' || d.timezone !== 'Africa/Nouakchott') {
+        api.put('/settings/business', { country: 'MR', currency: 'MRU', timezone: 'Africa/Nouakchott' }).catch(() => {});
+        updateCurrentTenant({ country: 'MR', currency: 'MRU', timezone: 'Africa/Nouakchott' });
+      }
     }).catch(() => {});
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
