@@ -109,13 +109,7 @@ export const formatCurrency = (amount: number, currency: string, locale = 'en-US
   if (!currency) return amount.toFixed(2);
   const symbol = CURRENCY_SYMBOL_OVERRIDE[currency];
   if (symbol) {
-    try {
-      return new Intl.NumberFormat(locale, { style: 'currency', currency, currencyDisplay: 'code' })
-        .format(amount)
-        .replace(currency, symbol);
-    } catch {
-      return `${symbol} ${amount.toFixed(2)}`;
-    }
+    return `${symbol} ${amount.toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   }
   try {
     return new Intl.NumberFormat(locale, { style: 'currency', currency, currencyDisplay: 'narrowSymbol' }).format(amount);
