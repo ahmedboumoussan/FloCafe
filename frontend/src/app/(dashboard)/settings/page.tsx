@@ -1058,12 +1058,11 @@ export default function SettingsPage() {
       ]);
 
       const d = businessRes.data;
-      const matchedCountry = COUNTRIES.find(c => c.currency === d.currency && c.timezone === d.timezone);
       const loaded: BusinessForm = {
         businessName: d.business_name || '',
-        countryCode: matchedCountry?.code || '',
-        timezone: d.timezone || '',
-        currency: d.currency || '',
+        countryCode: 'MR',
+        timezone: 'Africa/Nouakchott',
+        currency: 'MRU',
         billingType: d.billing_type === 'prepaid' ? 'prepaid' : 'postpaid',
         tablesRequired: typeof d.tables_required === 'boolean' ? d.tables_required : true,
         taxRegistered: d.tax_registered === 'true' || d.tax_registered === true || d.tax_registered === 1,
@@ -1189,12 +1188,11 @@ export default function SettingsPage() {
 
     api.get('/settings/business').then((res) => {
       const d = res.data;
-      const matchedCountry = COUNTRIES.find(c => c.currency === d.currency && c.timezone === d.timezone);
       const loaded: BusinessForm = {
         businessName: d.business_name || '',
-        countryCode: matchedCountry?.code || '',
-        timezone: d.timezone || '',
-        currency: d.currency || '',
+        countryCode: 'MR',
+        timezone: 'Africa/Nouakchott',
+        currency: 'MRU',
         billingType: d.billing_type === 'prepaid' ? 'prepaid' : 'postpaid',
         tablesRequired: typeof d.tables_required === 'boolean' ? d.tables_required : true,
         taxRegistered: d.tax_registered === 'true' || d.tax_registered === true || d.tax_registered === 1,
